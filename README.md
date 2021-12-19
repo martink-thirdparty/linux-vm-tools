@@ -33,6 +33,8 @@ We have added support for Debian 11.
 
 2) Audio displays dummy output, open a terminal from enhanced session mode and type ```pulseaudio -k```.
 
+3) Audio redirection is not working when using the Xfce desktop environment.
+
 # Disclaimer
 
 The contents in this repository provided AS IS with absolutely NO warranty. 
