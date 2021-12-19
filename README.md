@@ -32,3 +32,9 @@ We have added support for Debian 11.
 1) If you get a black screen with cursor, make sure you haven't log in prior the enhanced session mode in the VM. Logout and login from enhanced session mode.
 
 2) Audio displays dummy output, open a terminal from enhanced session mode and type ```pulseaudio -k```.
+
+# Disclaimer
+
+The contents in this repository provided AS IS with absolutely NO warranty. 
+KASTERVO LTD is not responsible and without any limitation, for any errors, 
+omissions, losses or damages arising from the use of this repository.
