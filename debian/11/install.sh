@@ -35,6 +35,7 @@ fi
 #
 
 sudo mkdir /usr/local/lib/xrdp/
+sudo mkdir /usr/local/libexec/
 
 cd /tmp
 
