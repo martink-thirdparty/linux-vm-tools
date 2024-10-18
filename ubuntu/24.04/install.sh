@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# This script is for Ubuntu 22.04 Jammy Jellyfish to download and install XRDP+XORGXRDP via
+# This script is for Ubuntu 24.04 Noble Numbat to download and install XRDP+XORGXRDP via
 # source.
 #
 # Major thanks to: http://c-nergy.be/blog/?p=11336 for the tips.
@@ -11,7 +11,7 @@
 # Use HWE kernel packages
 #
 HWE=""
-#HWE="-hwe-22.04"
+#HWE="-hwe-24.04"
 
 ###############################################################################
 # Update our machine to the latest code if we need to.
