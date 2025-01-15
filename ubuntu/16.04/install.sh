@@ -60,11 +60,11 @@ make install
 # use vsock transport.
 sed -i_orig -e 's/use_vsock=false/use_vsock=true/g' /etc/xrdp/xrdp.ini
 # use rdp security.
-sed -i_orig -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.ini
 # remove encryption validation.
-sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
 # disable bitmap compression since its local its much faster
-sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
+sed -i -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
 #
 # sed -n -e 's/max_bpp=32/max_bpp=24/g' /etc/xrdp/xrdp.ini
 

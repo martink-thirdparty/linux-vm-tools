@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# This script is for Ubuntu 18.04 Bionic Beaver to download and install XRDP+XORGXRDP via
+# This script is for Ubuntu 24.04 Noble Numbat to download and install XRDP+XORGXRDP via
 # source.
 #
 # Major thanks to: http://c-nergy.be/blog/?p=11336 for the tips.
@@ -11,7 +11,7 @@
 # Use HWE kernel packages
 #
 HWE=""
-#HWE="-hwe-18.04"
+#HWE="-hwe-24.04"
 
 ###############################################################################
 # Update our machine to the latest code if we need to.
@@ -46,7 +46,7 @@ systemctl stop xrdp-sesman
 
 # Configure the installed XRDP ini files.
 # use vsock transport.
-sed -i_orig -e 's/use_vsock=false/use_vsock=true/g' /etc/xrdp/xrdp.ini
+sed -i_orig -e 's/port=3389/port=vsock:\/\/-1:3389/g' /etc/xrdp/xrdp.ini
 # use rdp security.
 sed -i -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.ini
 # remove encryption validation.
@@ -75,18 +75,17 @@ sed -i -e 's/FuseMountName=thinclient_drives/FuseMountName=shared-drives/g' /etc
 sed -i_orig -e 's/allowed_users=console/allowed_users=anybody/g' /etc/X11/Xwrapper.config
 
 # Blacklist the vmw module
-if [ ! -e /etc/modprobe.d/blacklist_vmw_vsock_vmci_transport.conf ]; then
-cat >> /etc/modprobe.d/blacklist_vmw_vsock_vmci_transport.conf <<EOF
-blacklist vmw_vsock_vmci_transport
-EOF
+if [ ! -e /etc/modprobe.d/blacklist-vmw_vsock_vmci_transport.conf ]; then
+  echo "blacklist vmw_vsock_vmci_transport" > /etc/modprobe.d/blacklist-vmw_vsock_vmci_transport.conf
 fi
 
 #Ensure hv_sock gets loaded
 if [ ! -e /etc/modules-load.d/hv_sock.conf ]; then
-echo "hv_sock" > /etc/modules-load.d/hv_sock.conf
+  echo "hv_sock" > /etc/modules-load.d/hv_sock.conf
 fi
 
 # Configure the policy xrdp session
+mkdir -p /etc/polkit-1/localauthority/50-local.d/
 cat > /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla <<EOF
 [Allow Colord all Users]
 Identity=unix-user:*
